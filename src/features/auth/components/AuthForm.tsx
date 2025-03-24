@@ -7,23 +7,36 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaApple, FaFacebookF, FaGoogle } from "react-icons/fa6";
 import { z } from "zod";
+import { useAuth } from "../hooks/useAuth";
 import { authSchema } from "../utils/authSchema";
 
 type AuthFormValues = z.infer<typeof authSchema>;
 
-const AuthForm = () => {
+const AuthForm = ({ handleNavigate }: { handleNavigate: (url: string) => void }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const { login, register, isLoading, error } = useAuth();
+
 
   const toggleForm = () => setIsLogin((prev) => !prev);
 
   const form = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
-    defaultValues: { email: "", password: "", first_name: "", last_name: "" },
+    defaultValues: { email: "", password: "", first_name: undefined, last_name: undefined },
   });
 
-  const onSubmit = (data: AuthFormValues) => {
+  const onSubmit = async (data: AuthFormValues) => {
     console.log("Form Data:", data);
     // Call Supabase auth functions here
+    if (isLogin) {
+      await login(data.email, data.password);
+    } else {
+      if (data.first_name && data.last_name) {
+        await register(data.email, data.password, data.first_name, data.last_name);
+      }
+    }
+    if (!error) {
+      handleNavigate('/dashboard');
+    }
   };
 
   return (
@@ -38,6 +51,7 @@ const AuthForm = () => {
           className="w-full"
         >
           <h2 className="mb-4 font-bold text-2xl text-center">{isLogin ? "Login" : "Sign Up"}</h2>
+          {error ? <div>{error}</div> : <div></div>}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               {!isLogin && (
@@ -120,7 +134,7 @@ const AuthForm = () => {
               </div>
 
               <Button type="submit" className="w-full">
-                {isLogin ? "Login" : "Sign Up"}
+                {isLoading ? "Loading..." : isLogin ? "Login" : "Sign Up"}
               </Button>
             </form>
           </Form>

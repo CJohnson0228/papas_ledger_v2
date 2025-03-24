@@ -29,7 +29,7 @@ function AuthLayout({ className, ...props }: React.ComponentProps<"div">) {
               <CardContent className="grid md:grid-cols-2 p-0">
                 <div className="flex justify-center items-center p-6 md:p-8 md:min-h-[540px]">
                   {/* Form Component */}
-                  <AuthForm />
+                  <AuthForm handleNavigate={handleNavigate} />
                   {/* OAuth Options */}
                 </div>
                 <div className="hidden md:block relative bg-muted">

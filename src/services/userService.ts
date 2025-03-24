@@ -13,12 +13,13 @@ export const getUserById = async (uid: string): Promise<User | null> => {
 }
 
 // Create a new user (Exclude `created_at` from inserts)
-export const createUser = async (
-  userData: Omit<User, 'uid' | 'created_at'>
-) => {
-  const { data, error } = await supabase.from('users').insert([userData])
+export const createUser = async (userData: Omit<User, 'created_at'>) => {
+  const { data, error } = await supabase
+    .from('users')
+    .insert([userData])
+    .select()
   if (error) throw error
-  return data
+  return data && data.length > 0 ? data[0] : null
 }
 
 // Update user info (Exclude `created_at` from updates)
