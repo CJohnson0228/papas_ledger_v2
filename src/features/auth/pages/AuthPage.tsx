@@ -1,5 +1,6 @@
 import authImg from '@/assets/imgs/authImg.png'
 import { Card, CardContent } from "@/components/ui/card"
+import AnimatedBackground from '@/features/app/components/AnimatedBackground/AnimatedBackground'
 import useHandleNaviagte from "@/hooks/useHandleNavigate"
 import { cn } from "@/lib/utils"
 import { AnimatePresence } from "motion/react"
@@ -16,12 +17,13 @@ function AuthLayout({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
+      <AnimatedBackground />
       <div className={cn("flex gap-6", className)} {...props}>
         <AnimatePresence mode='wait'>
           {!isExiting &&
             <Card
               key='AuthLayout'
-              className="py-0 overflow-hidden"
+              className="z-10 py-0 overflow-hidden"
               initial={authVariants.hidden}
               exit={authVariants.hidden}
               animate={authVariants.visible}
@@ -36,7 +38,7 @@ function AuthLayout({ className, ...props }: React.ComponentProps<"div">) {
                   <img
                     src={authImg}
                     alt="Image"
-                    className="absolute inset-0 dark:brightness-[0.2] dark:grayscale w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
               </CardContent>

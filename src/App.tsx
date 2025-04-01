@@ -1,15 +1,13 @@
 import AppRoutes from "@/routes";
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
 import userAtom from "./features/auth/state/userAtom";
 import supabase from "./lib/supabaseClient";
 import { getUserById } from "./services";
 
 // App Entry Point
 const App = () => {
-  const [user, setUser] = useAtom(userAtom);
-  const navigate = useNavigate();
+  const setUser = useSetAtom(userAtom);
 
   useEffect(() => {
     // Check for an existing session on app load
@@ -18,6 +16,7 @@ const App = () => {
       if (authData?.session) {
         try {
           const user = await getUserById(authData.session.user.id);
+          console.log(user)
           setUser(user);
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -33,6 +32,7 @@ const App = () => {
         if (session?.user) {
           try {
             const user = await getUserById(session.user.id);
+            console.log(user)
             setUser(user);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {
@@ -57,15 +57,7 @@ const App = () => {
     };
   }, [setUser]);
 
-  useEffect(() => {
-    if (user) {
-      navigate('/dashboard')
-    } else {
-      navigate('/')
-    }
-  }, [user, navigate])
-
-  return <AppRoutes />;
+  return <AppRoutes />
 };
 
 export default App;

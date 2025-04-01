@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -134,7 +135,7 @@ const AuthForm = ({ handleNavigate }: { handleNavigate: (url: string) => void })
               </div>
 
               <Button type="submit" className="w-full">
-                {isLoading ? "Loading..." : isLogin ? "Login" : "Sign Up"}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : isLogin ? "Login" : "Sign Up"}
               </Button>
             </form>
           </Form>

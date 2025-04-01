@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
-const useHandleNaviagte = () => {
+const useHandleNavigate = () => {
   const [isExiting, setIsExiting] = useState(false)
   const navigate = useNavigate()
 
@@ -15,4 +15,4 @@ const useHandleNaviagte = () => {
   return { isExiting, handleNavigate }
 }
 
-export default useHandleNaviagte
+export default useHandleNavigate
