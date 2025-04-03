@@ -1,13 +1,16 @@
 import AppRoutes from "@/routes";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { getUserById } from "./database";
 import userAtom from "./features/auth/state/userAtom";
 import supabase from "./lib/supabaseClient";
-import { getUserById } from "./services";
 
 // App Entry Point
 const App = () => {
-  const setUser = useSetAtom(userAtom);
+  const navigate = useNavigate()
+  const [user, setUser] = useAtom(userAtom);
+  const location = useLocation()
 
   useEffect(() => {
     // Check for an existing session on app load
@@ -56,6 +59,20 @@ const App = () => {
       cleanup.then((fn) => fn && fn());
     };
   }, [setUser]);
+
+  // this accomplishes what I wanted it too, but Im not sure its the best way to do it.
+  // The intent is to skip the auth window if there is already a user and session
+  // Oringinally had a check that navigated to '/auth' if no user and to '/dashboard' if there was a user
+  // that prevented a logged in user from viewing any page other than dashboard.
+  // will continue to work on this.
+
+  // this is breaking animations
+
+  useEffect(() => {
+    if (location.pathname === '/auth' && user) {
+      navigate('dashboard')
+    }
+  }, [user, location])
 
   return <AppRoutes />
 };

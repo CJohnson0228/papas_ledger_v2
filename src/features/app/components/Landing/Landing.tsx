@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import userAtom from "@/features/auth/state/userAtom";
-import useHandleNavigate from "@/hooks/useHandleNavigate";
 import { useAtom } from "jotai";
 import { AnimatePresence, motion } from 'motion/react';
+import { useNavigate } from "react-router";
 import AnimatedBackground from "../AnimatedBackground/AnimatedBackground";
 
 function Landing() {
   const user = useAtom(userAtom)
-  const { isExiting, handleNavigate } = useHandleNavigate()
+  const navigate = useNavigate()
 
   const headingVariants = {
     visible: {
@@ -42,15 +42,15 @@ function Landing() {
 
   const handleBegin = () => {
     if (user) {
-      handleNavigate('dashboard')
+      navigate('dashboard')
     } else {
-      handleNavigate('auth')
+      navigate('auth')
     }
   }
 
   return (
-    <AnimatePresence mode='wait'>
-      {!isExiting && <motion.div
+    <AnimatePresence propagate mode="wait">
+      <motion.div
         id='Splash-Page'
         key={location.pathname}
         exit={{ opacity: 0, transition: { when: 'afterChildren', duration: 0.5, delay: 0.3 } }}
@@ -63,7 +63,7 @@ function Landing() {
             animate={headingVariants.visible}
             key='SplashHeading'
             id='Splash-Heading'
-            className="flex flex-col justify-center items-center mb-3">
+            className="flex flex-col justify-center items-center mb-3 rounded-md">
             <div className="drop-shadow-md font-heading text-primary text-4xl md:text-7xl">Papa's Ledger</div>
             <div className="self-center -mt-2 font-sans text-muted-foreground text-xs md:text-lg">Track Every Dollar, Balance Every Account</div>
           </motion.div>
@@ -73,7 +73,7 @@ function Landing() {
             animate={sloganVariants.visible}
             id='Splash-Slogan'
             key='Splash-Slogan'
-            className="flex flex-col justify-center items-center max-w-4xl">
+            className="flex flex-col justify-center items-center rounded-md max-w-4xl">
             <div className="mb-3 text-foreground text-lg md:text-2xl text-center">Master Your Money with Ease</div>
             <div className="text-muted-foreground md:text-md text-sm text-center">Stay on top of your finances with seamless,<br /> checkbook-style tracking across multiple accounts.</div>
             <div className="text-muted-foreground md:text-md text-sm text-center">Simple, powerful, and always in sync—<br />because every dollar counts.</div>
@@ -88,7 +88,7 @@ function Landing() {
             <Button onClick={handleBegin}>BEGIN</Button>
           </motion.div>
         </div>
-      </motion.div>}
+      </motion.div>
     </AnimatePresence>
   )
 }

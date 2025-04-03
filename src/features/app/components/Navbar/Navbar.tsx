@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/styles/theme-toggle"
 import AvatarMenu from "./components/AvatarMenu"
 import NavbarLinks from "./components/NavbarLinks"
 
@@ -13,7 +12,6 @@ function Navbar() {
       <div className="flex items-center gap-2">
         <div><NavbarLinks /></div>
         <div><AvatarMenu /></div>
-        <div><ModeToggle /></div>
       </div>
     </div>
   )

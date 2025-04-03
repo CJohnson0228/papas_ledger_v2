@@ -1,4 +1,4 @@
-import { createUser, getUserById } from '@/services'
+import { createUser, getUserById } from '@/database'
 import { useSetAtom } from 'jotai'
 import { useState } from "react"
 import { signIn, signOut, signUp } from '../api/authApi'

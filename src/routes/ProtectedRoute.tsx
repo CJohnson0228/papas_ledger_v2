@@ -4,7 +4,6 @@ import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoute = () => {
   const user = useAtomValue(userAtom); // Get auth state
-  console.log(user)
   return user ? <Outlet /> : <Navigate to="/auth" replace />;
 };
 

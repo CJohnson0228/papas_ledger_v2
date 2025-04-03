@@ -1,9 +1,9 @@
+import Dashboard from '@/features/app/components/Dashboard'
 import Landing from '@/features/app/components/Landing'
-import Dashboard from '@/features/app/Dashboard'
 import AuthPage from '@/features/auth/pages/AuthPage'
-import NotFound from '@/pages/NotFound'
 import { AnimatePresence } from 'motion/react'
 import { Route, Routes, useLocation } from 'react-router'
+import NotFound from './NotFound'
 import ProtectedRoute from './ProtectedRoute'
 
 // App Routes
