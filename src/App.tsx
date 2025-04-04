@@ -19,7 +19,6 @@ const App = () => {
       if (authData?.session) {
         try {
           const user = await getUserById(authData.session.user.id);
-          console.log(user)
           setUser(user);
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -35,7 +34,6 @@ const App = () => {
         if (session?.user) {
           try {
             const user = await getUserById(session.user.id);
-            console.log(user)
             setUser(user);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {

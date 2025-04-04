@@ -51,7 +51,7 @@ function AuthLayout({ className, ...props }: React.ComponentProps<"div">) {
   }
 
   return (
-    <motion.div className="flex justify-center items-center w-screen h-screen">
+    <motion.div className="flex justify-center items-center w-screen h-screen overflow-hidden">
       <div className={cn("flex gap-6", className)} {...props}>
         <AnimatePresence mode='wait'>
           <Card

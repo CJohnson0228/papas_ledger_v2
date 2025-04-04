@@ -3,6 +3,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --background: oklch(0.23 0.0019 286.25);
   --foreground: oklch(0.985 0 0);
@@ -10,18 +12,18 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.26 0.0037 286.14);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.62 0.2345 260.76);
+  --primary: oklch(0.65 0.2345 260.76);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.26 0.0037 286.14);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.23 0.0019 286.25);
-  --muted-foreground: oklch(0.8 0.0043 271.36);
-  --accent: oklch(0.12 0.003 48.717);
+  --muted-foreground: oklch(0.65 0.0043 271.36);
+  --accent: oklch(0.3 0.0037 286.14);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.56 0.2266 29.71);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.26 0.0019 286.27);
-  --input: oklch(0.23 0.0019 286.25);
+  --border: oklch(0.33 0.0019 286.27);
+  --input: oklch(0.4 0.0019 286.25);
   --ring: oklch(0.37 0.0069 274.8);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -31,9 +33,9 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.23 0.0019 286.25);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.2345 260.76);
+  --sidebar-primary: oklch(0.65 0.2345 260.76);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.12 0.003 48.717);
+  --sidebar-accent: oklch(0.35 0.0037 286.14);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.26 0.0019 286.27);
   --sidebar-ring: oklch(0.37 0.0069 274.8);
@@ -51,6 +53,14 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+.avatar-button:hover {
+  box-shadow: 0px 0px 0px 1px oklch(0.42 0.0069 274.8);
+}
+
+.avatar-button {
+  box-shadow: none;
 }
 
 @theme inline {
@@ -105,4 +115,15 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.dark {
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
