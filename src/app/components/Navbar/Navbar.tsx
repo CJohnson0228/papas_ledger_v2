@@ -1,10 +1,12 @@
 import { SidebarTrigger } from "@/components/ui/sidebar"
+import { motion } from "motion/react"
 import AvatarMenu from "./components/AvatarMenu"
 import NavbarLinks from "./components/NavbarLinks"
 
 function Navbar() {
   return (
-    <div className="flex justify-between items-center bg-secondary px-2 py-0.5 border-accent border-b w-full">
+    <motion.div
+      className="flex justify-between items-center bg-secondary px-2 py-0.5 border-accent border-b w-full">
       <div className="flex items-center">
         <SidebarTrigger className="-ml-1" />
         <div className="">
@@ -17,7 +19,7 @@ function Navbar() {
         <div className="hidden md:flex"><NavbarLinks /></div>
         <div><AvatarMenu /></div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
