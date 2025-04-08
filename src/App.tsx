@@ -1,10 +1,10 @@
 import AppRoutes from "@/routes";
 import { useAtom, useSetAtom } from "jotai";
 import { useEffect } from "react";
-import LoadingPage from "./app/components/Loading/LoadingPage";
 import { getUserById } from "./database";
 import userAtom, { userLoadingAtom } from "./features/auth/state/userAtom";
 import supabase from "./lib/supabaseClient";
+import LoadingPage from "./routes/LoadingPage";
 
 // App Entry Point
 const App = () => {
@@ -12,37 +12,41 @@ const App = () => {
   const [userLoading, setUserLoading] = useAtom(userLoadingAtom)
 
   useEffect(() => {
+    const isMounted = true
     // Check for an existing session on app load
     const initAuth = async () => {
       setUserLoading(true)
-      const { data: authData, error } = await supabase.auth.getSession()
-      if (authData?.session) {
-        try {
-          const user = await getUserById(authData.session.user.id);
-          setUser(user);
-          setUserLoading(false)
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-          console.error(error);
-          setUserLoading(false)
+      try {
+        const { data: authData, error } = await supabase.auth.getSession()
+        if (error) throw error
+        if (authData?.session) {
+          try {
+            const user = await getUserById(authData.session.user.id);
+            if (isMounted) setUser(user);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } catch (error: any) {
+            console.error(error);
+          }
+        } else {
+          if (isMounted) setUser(null)
         }
-      }
-      if (error) {
+      } catch (error) {
         console.error(error);
+      } finally {
         setUserLoading(false)
       }
 
       // Listen for auth state changes
-      const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      const { data: authListener } = supabase.auth.onAuthStateChange(async (_event, session) => {
         setUserLoading(true)
         if (session?.user) {
           try {
             const user = await getUserById(session.user.id);
             setUser(user);
-            setUserLoading(false)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (error: any) {
             console.error(error);
+          } finally {
             setUserLoading(false)
           }
         } else {

@@ -1,9 +1,12 @@
 import Landing from '@/app/components/Landing'
-import LoadingPage from '@/app/components/Loading/LoadingPage'
 import AppLayout from '@/app/layouts/AppLayout'
+import AccountsLayout from '@/features/accounts'
 import { userLoadingAtom } from '@/features/auth'
 import AuthPage from '@/features/auth/pages/AuthPage'
+import BudgetingLayout from '@/features/budgeting'
+import ChartsLayout from '@/features/charts'
 import Dashboard from '@/features/dashboard/Dashboard'
+import LoadingPage from '@/routes/LoadingPage'
 import { useAtomValue } from 'jotai'
 import { AnimatePresence } from 'motion/react'
 import { Route, Routes, useLocation } from 'react-router'
@@ -28,13 +31,16 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path='dashboard' element={<Dashboard />} />
-            <Route path='accounts' element={<div>Account Layout</div>}>
+            <Route path='accounts' element={<AccountsLayout />}>
+              <Route index element={<div>Accounts Home</div>} />
               <Route path=':id' element={<div>Account</div>} />
             </Route>
-            <Route path='budgets' element={<div>Budget Layout</div>}>
+            <Route path='budgets' element={<BudgetingLayout />}>
+              <Route index element={<div>Budgets Home</div>} />
               <Route path=':id' element={<div>Budget</div>} />
             </Route>
-            <Route path='charts' element={<div>Chart Layout</div>}>
+            <Route path='charts' element={<ChartsLayout />}>
+              <Route index element={<div>Charts Home</div>} />
               <Route path=':id' element={<div>Chart</div>} />
             </Route>
           </Route>

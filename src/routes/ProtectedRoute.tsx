@@ -1,5 +1,5 @@
-import LoadingPage from '@/app/components/Loading/LoadingPage';
 import userAtom, { userLoadingAtom } from '@/features/auth/state/userAtom';
+import LoadingPage from '@/routes/LoadingPage';
 import { useAtomValue } from "jotai";
 import { Navigate, Outlet } from "react-router";
 
