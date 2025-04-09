@@ -2,6 +2,8 @@ import { scaleAnime } from "@/utils/animVariants"
 import { motion } from "motion/react"
 import { useEffect } from "react"
 
+// will use a pie chart for this one with expenses by category
+// maybe a pair of rings, inside being budget outter ring being actual.
 function BudgetData() {
 
   // Budget Load

@@ -1,6 +1,6 @@
 const scaleAnime = {
   visible: { scale: 1 },
-  hidden: { scale: 0 },
+  hidden: { scale: 0.1 },
 }
 
 const fadeAnim = {
