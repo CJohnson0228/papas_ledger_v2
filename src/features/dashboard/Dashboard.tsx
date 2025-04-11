@@ -9,13 +9,13 @@ function Dashboard() {
   return (
     <motion.div>
       <div className="flex flex-col flex-1 gap-4 p-4">
+        <AccountsList />
         <motion.div
           className="gap-4 grid md:grid-cols-3 auto-rows-min">
           <RecentTransactions />
           <IncomeExpenseGraph />
           <BudgetData />
         </motion.div>
-        <AccountsList />
       </div>
     </motion.div>
   )

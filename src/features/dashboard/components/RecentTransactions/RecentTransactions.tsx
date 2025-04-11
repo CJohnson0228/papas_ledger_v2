@@ -29,17 +29,19 @@ function RecentTransactions() {
       animate='visible'
       variants={scaleAnime}
       transition={{ duration: 0.5 }}
-      className="bg-card px-3 py-2 rounded-xl aspect-video">
+      className="bg-card p-2 rounded-xl min-h-[260px]">
+      <div className='text-center'>Recent Transactions</div>
       {/* Recent Transactions Element */}
       {/* Loading Tansactions */}
       {transactionsList === null && <div>Loading transactions...</div>}
-      {/* No Accounts for User */}
+      {/* No Transactions for User */}
       {transactionsList?.length === 0 &&
         <div>No transactions exist for {user?.first_name + ' ' + user?.last_name} in the last two weeks</div>
       }
-      {/* Display Accounts for User */}
+      {/* Display Transactions for User */}
       {hasTransactions && (
         <div className="flex flex-col gap-2">
+          {/* Need to add Scroll Area Here */}
           {transactionsList.map((transaction) => (
             <div key={transaction.id}>{transaction.date} - {transaction.payee} - {transaction.amount}</div>
           ))}

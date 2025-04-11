@@ -35,10 +35,11 @@ function IncomeExpenseGraph() {
       animate='visible'
       variants={scaleAnime}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="flex justify-center items-center bg-card rounded-xl w-full h-full aspect-video">
+      className="flex flex-col justify-center items-center bg-card p-2 rounded-xl min-h-[260px]">
+      <div>Income/Expenses</div>
       {/* Income/Expense Graph Element */}
       {/* this is demo data from shadcn chat website for proof of concept */}
-      <ChartContainer config={chartConfig} className="w-full h-full">
+      <ChartContainer config={chartConfig} className="flex-1 w-full">
         <LineChart accessibilityLayer data={chartData}>
           <Line dataKey="income" stroke="var(--color-income)" radius={4} />
           <Line dataKey="expense" stroke="var(--color-expense)" radius={4} />
