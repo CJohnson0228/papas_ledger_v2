@@ -18,5 +18,10 @@ const dropAnim = {
   hidden: { y: -50 },
 }
 
-export { dropAnim, fadeAnim, rotAnim, scaleAnime }
+const fadeDropAnim = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -50 },
+}
+
+export { dropAnim, fadeAnim, fadeDropAnim, rotAnim, scaleAnime }
 

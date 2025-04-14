@@ -1,10 +1,7 @@
+import { BudgetDataItem } from "@/features/budgeting/types/BudgetDataTypes";
 import { ViewBox } from "recharts/types/util/types";
 
-type ChartDataItemType = { category: string, value: number, color: string }
-
-type ChartDataType = ChartDataItemType[]
-
-const PieLabel = ({ index, viewBox, chartData }: { index: number | undefined, viewBox: ViewBox | undefined, chartData: ChartDataType }) => {
+const PieLabel = ({ index, viewBox, chartData }: { index: number | undefined, viewBox: ViewBox | undefined, chartData: BudgetDataItem[] }) => {
   if (index == null) return null;
   const { cx, cy, outerRadius, startAngle, endAngle } = viewBox as {
     cx: number;

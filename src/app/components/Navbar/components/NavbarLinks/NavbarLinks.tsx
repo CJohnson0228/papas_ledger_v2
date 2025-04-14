@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import AnimatedLink from "@/components/AnimatedLink"
 import { useLocation, useNavigate } from "react-router"
 
 function NavbarLinks() {
@@ -7,27 +7,30 @@ function NavbarLinks() {
 
   return (
     <div className="flex px-2 text-xs">
-      <Button
+      <AnimatedLink
+        animationDuration={0.5}
         variant='link'
         className={`text-${location.pathname.substring(0, 4) === '/acc' ? 'primary' : 'foreground'}`}
-        onClick={() => navigate('accounts')}
+        to='accounts'
       >
         Accounts
-      </Button>
-      <Button
+      </AnimatedLink>
+      <AnimatedLink
+        animationDuration={0.5}
         variant='link'
         className={`text-${location.pathname.substring(0, 4) === '/bud' ? 'primary' : 'foreground'}`}
-        onClick={() => navigate('budgets')}
+        to='budgets'
       >
         Budgeting
-      </Button>
-      <Button
+      </AnimatedLink>
+      <AnimatedLink
+        animationDuration={0.5}
         variant='link'
         className={`text-${location.pathname.substring(0, 4) === '/cha' ? 'primary' : 'foreground'}`}
-        onClick={() => navigate('charts')}
+        to='charts'
       >
         Charts
-      </Button>
+      </AnimatedLink>
     </div>
   )
 }

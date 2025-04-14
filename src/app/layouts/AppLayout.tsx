@@ -1,15 +1,18 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { useAtom } from "jotai"
+import { useAtom, useAtomValue } from "jotai"
 import { AnimatePresence, motion } from "motion/react"
 import { Outlet, useLocation } from "react-router"
 import AppSidebar from "../components/AppSidebar"
+import Modal from "../components/Modal"
 import Navbar from "../components/Navbar"
-import { sidebarAtom } from "../state/appAtom"
+import { isModalOpenAtom, modalContentAtom, sidebarAtom } from "../state/appAtom"
 
 function AppLayout() {
   const location = useLocation()
   const [isSidebarOpen, setIsSidebarOpen] = useAtom(sidebarAtom)
+  const [isModalOpen, setIsModalOpen] = useAtom(isModalOpenAtom)
+  const modalContent = useAtomValue(modalContentAtom)
 
   return (
     <div className="w-screen h-screen overflow-hidden">
@@ -32,6 +35,9 @@ function AppLayout() {
           </ScrollArea>
         </SidebarInset>
       </SidebarProvider>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={modalContent?.title}>
+        {modalContent?.children}
+      </Modal>
     </div>
   )
 }

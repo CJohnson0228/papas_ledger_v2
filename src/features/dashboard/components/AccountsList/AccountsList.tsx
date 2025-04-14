@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { getAllAccountsByUserId } from "@/features/accounts/database/accountsService"
 import userAtom from "@/features/auth/state/userAtom"
 import { Account } from "@/types/accountTypes"
@@ -27,18 +28,24 @@ function AccountsList() {
     <motion.div
       initial='hidden'
       animate='visible'
+      exit='hidden'
       variants={scaleAnime}
       transition={{ duration: 0.5, delay: 0 }}
-      className="flex flex-1 justify-center items-center bg-card py-5 rounded-xl">
+      className="flex flex-col flex-1 items-center bg-card p-2 rounded-xl min-h-24">
+      <div className="text">Accounts</div>
       {/* Loading Accounts */}
-      {accountsList === null && <div>Loading accounts...</div>}
+      {accountsList === null && <div className='text-muted-foreground'>Loading accounts...</div>}
       {/* No Accounts for User */}
-      {accountsList?.length === 0 && <div>No accounts exist for {user?.first_name + ' ' + user?.last_name}</div>}
+      {accountsList?.length === 0 &&
+        <div className="w-full text-center">
+          <div className='pb-2 text-muted-foreground'>No accounts exist for {user?.first_name + ' ' + user?.last_name}</div>
+          <Button variant='default' className="w-full">Add Account</Button>
+        </div>}
       {/* Display Accounts for User */}
       {hasAccounts && (
         <div className="flex flex-col gap-2">
           {accountsList.map((account) => (
-            <div key={account.id}>{account.name}</div>
+            <div className='text-muted-foreground' key={account.id}>{account.name}</div>
           ))}
         </div>
       )}

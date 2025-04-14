@@ -27,23 +27,24 @@ function RecentTransactions() {
     <motion.div
       initial='hidden'
       animate='visible'
+      exit='hidden'
       variants={scaleAnime}
       transition={{ duration: 0.5 }}
-      className="bg-card p-2 rounded-xl min-h-[260px]">
+      className="bg-card p-2 rounded-xl min-h-24 md:min-h-[260px]">
       <div className='text-center'>Recent Transactions</div>
       {/* Recent Transactions Element */}
       {/* Loading Tansactions */}
-      {transactionsList === null && <div>Loading transactions...</div>}
+      {transactionsList === null && <div className='text-muted-foreground'>Loading transactions...</div>}
       {/* No Transactions for User */}
       {transactionsList?.length === 0 &&
-        <div>No transactions exist for {user?.first_name + ' ' + user?.last_name} in the last two weeks</div>
+        <div className='text-muted-foreground text-center'>No transactions exist for {user?.first_name + ' ' + user?.last_name} in the last two weeks</div>
       }
       {/* Display Transactions for User */}
       {hasTransactions && (
         <div className="flex flex-col gap-2">
           {/* Need to add Scroll Area Here */}
           {transactionsList.map((transaction) => (
-            <div key={transaction.id}>{transaction.date} - {transaction.payee} - {transaction.amount}</div>
+            <div key={transaction.id} className='text-muted-foreground'>{transaction.date} - {transaction.payee} - {transaction.amount}</div>
           ))}
         </div>
       )}

@@ -33,9 +33,10 @@ function IncomeExpenseGraph() {
     <motion.div
       initial='hidden'
       animate='visible'
+      exit='hidden'
       variants={scaleAnime}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="flex flex-col justify-center items-center bg-card p-2 rounded-xl min-h-[260px]">
+      className="flex flex-col items-center bg-card p-2 rounded-xl md:min-h-[260px]">
       <div>Income/Expenses</div>
       {/* Income/Expense Graph Element */}
       {/* this is demo data from shadcn chat website for proof of concept */}

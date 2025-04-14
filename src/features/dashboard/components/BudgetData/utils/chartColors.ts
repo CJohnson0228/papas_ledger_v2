@@ -1,0 +1,15 @@
+export const chartColors = {
+  medical: 'oklch(0.75 0.22 20)',
+  utilities: 'oklch(0.75 0.20 55)',
+  food: 'oklch(0.75 0.18 95)',
+  transportation: 'oklch(0.75 0.18 145)',
+  clothing: 'oklch(0.75 0.20 180)',
+  education: 'oklch(0.75 0.12 190)',
+  housing: 'oklch(0.75 0.20 220)',
+  insurance: 'oklch(0.75 0.18 260)',
+  household: 'oklch(0.75 0.18 280)',
+  personal: 'oklch(0.75 0.20 310)',
+  savings: 'oklch(0.75 0.20 300)',
+  donations: 'oklch(0.75 0.20 340)',
+  entertainment: 'oklch(0.75 0.12 10)',
+}

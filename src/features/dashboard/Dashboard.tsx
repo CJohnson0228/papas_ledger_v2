@@ -1,3 +1,4 @@
+import { fadeAnim } from "@/utils/animVariants"
 import { motion } from "motion/react"
 import AccountsList from "./components/AccountsList"
 import BudgetData from "./components/BudgetData"
@@ -7,7 +8,12 @@ import RecentTransactions from "./components/RecentTransactions"
 function Dashboard() {
 
   return (
-    <motion.div>
+    <motion.div
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
+      variants={fadeAnim}
+      transition={{ duration: 0.5, delay: 0 }}>
       <div className="flex flex-col flex-1 gap-4 p-4">
         <AccountsList />
         <motion.div
